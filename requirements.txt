@@ -3,6 +3,7 @@ beautifulsoup4==4.12.3
 certifi==2024.6.2
 charset-normalizer==3.3.2
 Django==5.0.6
+django-allauth==0.63.6
 idna==3.7
 python-dotenv==1.0.1
 requests==2.32.3
