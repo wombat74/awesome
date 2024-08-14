@@ -72,6 +72,7 @@ def post_delete_view(request, pk):
         'post': post,
     }
     return render(request, 'a_posts/post_delete.html', context)
+
 @login_required
 def post_edit_view(request, pk):
     post = get_object_or_404(Post, id=pk, author=request.user)
@@ -92,8 +93,26 @@ def post_edit_view(request, pk):
 
 def post_page_view(request, pk):
     post = get_object_or_404(Post, id=pk)
+    commentform = CommentCreateForm()
 
     context = {
         'post': post,
+        'commentform': commentform,
     }
     return render(request, 'a_posts/post_page.html', context)
+
+@login_required
+def comment_sent(request, pk):
+    post = get_object_or_404(Post, id=pk)
+
+    if request.method == 'POST':
+        form = CommentCreateForm(request.POST)
+        
+        if form.is_valid:
+            print(f'Form was valid')
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.parent_post = post
+            comment.save()
+
+    return redirect('post', post.id)
