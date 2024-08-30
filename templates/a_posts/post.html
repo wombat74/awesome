@@ -30,11 +30,11 @@
             <a class="font-bold hover:underline" href="{% url 'post' post.id %}">
                 {% if post.comments.count %}
                 Comments
-                <span class="font-light text-gray-500 ml-1">{{ post.comments.count }}</span>
-                {% else %}
-                {% if user.is_authenticated %}
-                Add Comment
-                {% endif %}
+                <span id="commentscount-{{ post.id }}" class="font-light text-gray-500 ml-1">{{ post.comments.count }}</span>
+                    {% else %}
+                    {% if user.is_authenticated %}
+                    Add Comment
+                    {% endif %}
                 {% endif %}
             </a>
             <div class="flex items-center gap-4 [&>a:hover]:underline">
