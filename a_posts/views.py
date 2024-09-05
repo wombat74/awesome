@@ -15,14 +15,12 @@ def home_view(request, tag=None):
     else:
         posts = Post.objects.all()
 
-    categories = Tag.objects.all()
-
     context = {
         'posts': posts,
-        'categories': categories,
-        'tag': tag
+        'tag': tag,
     }
     return render(request, 'a_posts/home.html', context)
+
 @login_required
 def post_create_view(request):
     form = PostCreateForm()
