@@ -1,13 +1,17 @@
 asgiref==3.8.1
 beautifulsoup4==4.12.3
 certifi==2024.6.2
+cffi==1.17.1
 charset-normalizer==3.3.2
+cryptography==43.0.1
 Django==5.0.6
 django-allauth==0.63.6
 django-cleanup==8.1.0
+django-environ==0.11.2
 django-htmx==1.19.0
 idna==3.7
 pillow==10.4.0
+pycparser==2.22
 python-dotenv==1.0.1
 requests==2.32.3
 soupsieve==2.5
