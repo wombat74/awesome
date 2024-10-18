@@ -11,20 +11,17 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
-from environ import Env
-env = Env()
-env.read_env()
+load_dotenv()
 
-ENVIRONMENT = env('ENVIRONMENT', default='production')
+ENVIRONMENT = os.environ.get('ENVIRONMENT', default='production')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
-# ENCRYPT_KEY = os.getenv('ENCRYPT_KEY')
-ENCRYPT_KEY = env('ENCRYPT_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
+ENCRYPT_KEY= os.environ.get('ENCRYPT_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if ENVIRONMENT == 'development':
@@ -45,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'admin_honeypot',
     'django_htmx',
     'allauth',
     'allauth.account',
@@ -170,7 +168,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_BLACKLIST = [
-    'admin', 'accounts', 'profile', 'category', 'post', 'inbox',
+    'admin', 'accounts', 'profile', 'category', 'post', 'inbox', 'theboss',
 ]
 
 
